@@ -1,0 +1,76 @@
+{
+  "manifest_version": 3,
+  "name": "MemoryBridge",
+  "version": "1.0.0",
+  "description": "Local AI memory bridge: Claude/ChatGPT/Gemini → Obsidian vault",
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "sidePanel",
+    "alarms"
+  ],
+
+  "host_permissions": [
+    "https://claude.ai/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://notebooklm.google.com/*",
+    "http://127.0.0.1:27123/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://claude.ai/*",
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://notebooklm.google.com/*"
+      ],
+      "js": ["content-script.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "side_panel": {
+    "default_path": "sidebar/sidebar.html"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "sidebar/sidebar.html",
+        "sidebar/sidebar.css",
+        "sidebar/sidebar.js",
+        "adapters/*.js",
+        "utils/*.js",
+        "selectors.json",
+        "summarizer.js"
+      ],
+      "matches": [
+        "https://claude.ai/*",
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://notebooklm.google.com/*"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "platforms": {
+    "claude": {
+      "humanTurn": ["[data-testid='human-turn']", ".human-turn", "[data-role='user']"],
+      "aiTurn": ["[data-testid='ai-turn']", ".ai-turn", "[data-role='assistant']"],
+      "chatContainer": ["main", ".chat-container", "div"],
+      "input": ["div[contenteditable='true']", ".ProseMirror", "textarea"],
+      "submit": ["button[aria-label='Send Message']", "button[type='submit']"]
+    },
+    "chatgpt": {
+      "messageContainer": ["[data-message-author-role]", ".message", "div"],
+      "chatContainer": ["#__next main", "main", "div"],
+      "input": ["#prompt-textarea", "textarea", "div[contenteditable='true']"],
+      "submit": ["button[data-testid='send-button']", "button[type='submit']"]
+    },
+    "gemini": {
+      "userTurn": ["user-query", ".user-query", "div"],
+      "aiTurn": ["model-response", ".model-response", "div"],
+      "input": [".ql-editor", "textarea", "div[contenteditable='true']"],
+      "submit": ["button.send-button", "button[aria-label='Send message']", "button"]
+    }
+  }
+}

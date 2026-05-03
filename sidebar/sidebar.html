@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MemoryBridge Sidebar</title>
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+  <div class="header">
+    <h2>🧠 MemoryBridge</h2>
+    <button id="close-btn" aria-label="Close">×</button>
+  </div>
+  
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="🔍 Search memories...">
+  </div>
+
+  <div class="tags-container" id="tags-container">
+    <!-- Tags populated by JS -->
+  </div>
+
+  <div class="list-header">
+    <h3>RECENT MEMORIES</h3>
+  </div>
+
+  <div class="memory-list" id="memory-list">
+    <!-- Memories populated by JS -->
+  </div>
+
+  <div class="actions">
+    <button id="capture-btn" class="primary-btn">+ Capture This Conversation</button>
+  </div>
+
+  <script type="module" src="sidebar.js"></script>
+</body>
+</html>

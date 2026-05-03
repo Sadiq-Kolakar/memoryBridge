@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MemoryBridge Setup</title>
+  <style>
+    body { font-family: system-ui; background: #0f0f0f; color: #e5e5e5; max-width: 600px; margin: 40px auto; padding: 20px; }
+    .panel { background: #1a1a1a; padding: 24px; border-radius: 8px; border: 1px solid #2a2a2a; }
+    h1 { color: #7c3aed; margin-top: 0; }
+    .step { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #2a2a2a; }
+    .step:last-child { border-bottom: none; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; }
+    input { width: 100%; padding: 10px; background: #0f0f0f; border: 1px solid #2a2a2a; color: white; border-radius: 6px; box-sizing: border-box; margin-bottom: 12px; }
+    .btn { padding: 10px 20px; background: #7c3aed; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    .btn:hover { opacity: 0.9; }
+    .status { margin-top: 12px; font-size: 0.9rem; }
+    .success { color: #10b981; }
+    .error { color: #ef4444; }
+    a { color: #7c3aed; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>🧠 MemoryBridge Setup</h1>
+    <p>Your AI has a memory now. Follow these steps to connect your local Obsidian vault.</p>
+    
+    <div class="step">
+      <h3>1. Install Local REST API</h3>
+      <p>Install the <a href="https://github.com/coddingtonbear/obsidian-local-rest-api" target="_blank">Obsidian Local REST API plugin</a> in your vault and enable it.</p>
+    </div>
+
+    <div class="step">
+      <h3>2. API Key</h3>
+      <label>Enter your Local REST API Key</label>
+      <input type="password" id="api-key" placeholder="Bearer token...">
+    </div>
+
+    <div class="step">
+      <h3>3. Vault Folder</h3>
+      <label>Folder name for memories</label>
+      <input type="text" id="vault-folder" placeholder="MemoryBridge" value="MemoryBridge">
+    </div>
+
+    <div class="step">
+      <button class="btn" id="save-btn">Save & Test Connection</button>
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+  
+  <script src="onboarding.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MemoryBridge</title>
+  <style>
+    body { width: 320px; font-family: system-ui; background: #0f0f0f; color: #e5e5e5; margin: 0; padding: 16px; box-sizing: border-box; }
+    h2 { margin: 0 0 16px; font-size: 1.2rem; }
+    .status-panel, .info-panel { background: #1a1a1a; padding: 12px; border-radius: 8px; border: 1px solid #2a2a2a; margin-bottom: 12px; }
+    .btn { display: block; width: 100%; padding: 10px; margin-bottom: 8px; background: #7c3aed; color: white; border: none; border-radius: 6px; cursor: pointer; text-align: center; text-decoration: none; font-weight: 600; }
+    .btn.secondary { background: #2a2a2a; }
+    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: grey; margin-right: 6px; }
+    .online { background: #10b981; }
+    .offline { background: #ef4444; }
+  </style>
+</head>
+<body>
+  <h2>🧠 MemoryBridge</h2>
+  
+  <div class="status-panel">
+    <div><span class="dot" id="vault-status-dot"></span> <span id="vault-status-text">Checking vault...</span></div>
+    <div style="font-size: 0.8rem; color: #6b7280; margin-top: 4px;">127.0.0.1:27123</div>
+    <div style="font-size: 0.8rem; margin-top: 8px;" id="memory-count">0 memories saved</div>
+  </div>
+
+  <button id="capture-btn" class="btn">📸 Capture Now</button>
+  <button id="open-vault-btn" class="btn secondary">📂 Open Vault Folder</button>
+  <button id="settings-btn" class="btn secondary">⚙️ Settings / Onboarding</button>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
