@@ -1,6 +1,6 @@
 import * as ObsidianClient from './obsidian-client.js';
 import { checkDuplicate, addHashToIndex } from './deduplication.js';
-import { buildMarkdown, sanitizeFilename } from './memory-schema.js';
+import { buildMarkdown, sanitizeFilename, generateFilename } from './memory-schema.js';
 
 // Setup alarms
 chrome.runtime.onInstalled.addListener(() => {
@@ -68,7 +68,7 @@ async function handleSaveMemory({ memoryNote, platform, rawConversationArray }) 
       return { success: true, status: 'duplicate', skipped: true };
     }
     
-    const filename = `${Date.now()}_${sanitizeFilename(memoryNote.title)}`;
+    const filename = generateFilename(memoryNote.title, platform);
     const markdown = buildMarkdown(memoryNote, platform, rawString, hash);
     
     try {
