@@ -68,8 +68,11 @@ async function handleSaveMemory({ memoryNote, platform, rawConversationArray }) 
       return { success: true, status: 'duplicate', skipped: true };
     }
     
+    // Find related memories by searching for shared tags
+    const relatedNotes = await findRelatedNotes(memoryNote.tags || []);
+    
     const filename = generateFilename(memoryNote.title, platform);
-    const markdown = buildMarkdown(memoryNote, platform, rawString, hash);
+    const markdown = buildMarkdown(memoryNote, platform, rawString, hash, relatedNotes);
     
     try {
       await ObsidianClient.saveNote(filename, markdown);
@@ -83,6 +86,30 @@ async function handleSaveMemory({ memoryNote, platform, rawConversationArray }) 
   } catch (error) {
     console.error('[MemoryBridge] Error in handleSaveMemory:', error);
     return { success: false, error: error.message };
+  }
+}
+
+async function findRelatedNotes(tags) {
+  if (!tags || tags.length === 0) return [];
+  
+  try {
+    // Search the vault for notes that mention any of the current tags
+    const searchTag = tags[0]; // Use the primary tag for search
+    const results = await ObsidianClient.searchNotes(searchTag);
+    
+    if (!results || !Array.isArray(results)) return [];
+    
+    // Extract filenames, clean them for wikilinks, max 5 related
+    return results
+      .map(r => r.filename || '')
+      .filter(f => f.endsWith('.md'))
+      .map(f => f.replace(/\.md$/, ''))                   // Strip .md
+      .map(f => f.replace(/^MemoryBridge\//, ''))          // Strip folder prefix
+      .filter(f => f.length > 0)
+      .slice(0, 5);
+  } catch (e) {
+    // If search fails (vault offline, no results), just skip linking
+    return [];
   }
 }
 
