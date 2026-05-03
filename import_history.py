@@ -192,8 +192,9 @@ def build_markdown(title, platform, turns, date_obj, convo_hash):
         insights.append("Contains code examples or implementations.")
     
     tags_str = ' '.join('#' + t for t in tags)
+    escaped_title = title.replace('"', '\\"')
     md = f"""---
-title: "{title.replace('"', '\\"')}"
+title: "{escaped_title}"
 platform: {platform}
 session_id: mb_import_{int(date_obj.timestamp() * 1000)}
 date: {iso_date}
