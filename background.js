@@ -121,8 +121,8 @@ async function queueMemorySave(filename, markdown, hash) {
 }
 
 async function flushQueue() {
-  const isHealthy = await ObsidianClient.healthCheck();
-  if (!isHealthy) return;
+  const healthResult = await ObsidianClient.healthCheck();
+  if (!healthResult.ok) return;
   
   const data = await chrome.storage.local.get('mb_save_queue');
   let queue = data.mb_save_queue || [];
