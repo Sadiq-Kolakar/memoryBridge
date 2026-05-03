@@ -191,7 +191,7 @@ def build_markdown(title, platform, turns, date_obj, convo_hash):
     if code_snippets:
         insights.append("Contains code examples or implementations.")
     
-    # ── Build Markdown ──
+    tags_str = ' '.join('#' + t for t in tags)
     md = f"""---
 title: "{title.replace('"', '\\"')}"
 platform: {platform}
@@ -215,7 +215,7 @@ cssclass: memorybridge-note
 > | **Date** | {readable_date} at {readable_time} |
 > | **Turns** | {len(turns)} ({len(user_turns)} user · {len(ai_turns)} AI) |
 > | **Words** | ~{total_words:,} |
-> | **Tags** | {' '.join(f'#{t}' for t in tags)} |
+> | **Tags** | {tags_str} |
 > | **Source** | Imported from data export |
 
 ---
